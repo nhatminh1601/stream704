@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web RTC</title>
+</head>
+<body>
+    <h1>Chat</h1>
+    <video id="localstream" width="300px" controls></video>
+</body>
+<script>
+    navigator.mediaDevices.getUserMedia({audio:false,video:true})
+    .then(stream=>{
+        var video = document.getElementById('localstream');
+        video.srcObject = stream;
+        video.onloadedmetadata = function() {
+            video.play();
+        };
+    })
+    .catch(err=>console.log(err))
+</script>
+</html>
